@@ -1,3 +1,4 @@
+//Полное описание для карт и их взаимодействие в приложении.
 using System;
 using System.Collections.Generic;
 using System.Text;
