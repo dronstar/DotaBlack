@@ -10,18 +10,18 @@ namespace black_jack
 {
     public partial class frm_BJ : Form
     {
-        PictureBox[] pic_card = new PictureBox[10];
-        int ind = 0;
+        PictureBox [] pic_card = new PictureBox[10];
+        int ind=0;
         Cards card = new Cards();
         Game game = new Game();
         DialogResult ans;
-        int sash = 105;
+        int sash=105;
         bool flag = true;
 
         public frm_BJ()
         {
             InitializeComponent();
-
+            
 
         }
         private void pictureBox1_Click(object sender, EventArgs e)
@@ -33,44 +33,44 @@ namespace black_jack
                     MessageBox.Show("ENTER NAME", "M-Bjack", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 else
                     if (game._Bet == 0)
-                    MessageBox.Show("NEED BET", "M-Bjack", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                else
+                        MessageBox.Show("NEED BET", "M-Bjack", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    else
                         if (flag == true)
-                {
+                        {
 
 
-                    num = card.Human();
-                    pic_card[ind] = new PictureBox();
-                    pic_card[ind].Image = Image.FromFile("img\\" + num.ToString() + ".jpg");
-                    pic_card[ind].Top = pictureBox1.Top;
-                    pic_card[ind].Left = pictureBox1.Left + sash;
-                    pic_card[ind].Height = 150;
-                    pic_card[ind].Width = 100;
-                    pic_card[ind].SizeMode = PictureBoxSizeMode.StretchImage;
-                    this.Controls.Add(pic_card[ind]);
+                            num = card.Human();
+                            pic_card[ind] = new PictureBox();
+                            pic_card[ind].Image = Image.FromFile("img\\" + num.ToString() + ".jpg");
+                            pic_card[ind].Top = pictureBox1.Top;
+                            pic_card[ind].Left = pictureBox1.Left + sash;
+                            pic_card[ind].Height = 150;
+                            pic_card[ind].Width = 100;
+                            pic_card[ind].SizeMode = PictureBoxSizeMode.StretchImage;
+                            this.Controls.Add(pic_card[ind]);
 
-                    game.Human(num);
+                            game.Human(num);
 
-                    lbl_HScore.Text = "You     " + game._HumanScore.ToString();
+                            lbl_HScore.Text = "You     " + game._HumanScore.ToString();
 
-                    if (game._HumanScore == 21)
-                    {
-                        game._Money += game._Bet;
-                        lbl_Money.Text = game._Money.ToString();
-                        ans = MessageBox.Show("YOU WON \n NEW GAME ?", "M-Bjack", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                        flag = false;
-                    }
-                    else if (game._HumanScore > 21)
-                    {
-                        game._Money -= game._Bet;
-                        lbl_Money.Text = game._Money.ToString();
-                        ans = MessageBox.Show("YOU LOST \n NEW GAME ?", "M-Bjack", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                        flag = false;
-                    }
+                            if (game._HumanScore == 21)
+                            {
+                                game._Money += game._Bet;
+                                lbl_Money.Text = game._Money.ToString();
+                                ans = MessageBox.Show("YOU WON \n NEW GAME ?", "M-Bjack", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                                flag = false;
+                            }
+                            else if (game._HumanScore > 21)
+                            {
+                                game._Money -= game._Bet;
+                                lbl_Money.Text = game._Money.ToString();
+                                ans = MessageBox.Show("YOU LOST \n NEW GAME ?", "M-Bjack", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                                flag = false;
+                            }
 
-                    sash += 105;
-                    ind++;
-                }
+                            sash += 105;
+                            ind++;
+                        }
 
                 if (ans == DialogResult.Yes)
                 {
@@ -82,7 +82,7 @@ namespace black_jack
             {
                 MessageBox.Show(ex.ToString(), "M-Bjack", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-        }
+       }
 
         private void cmb_Stand_Click(object sender, EventArgs e)
         {
@@ -95,45 +95,45 @@ namespace black_jack
                     MessageBox.Show("ENTER NAME", "M-Bjack", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 else
                     if (game._Bet == 0)
-                    MessageBox.Show("NEED BET", "M-Bjack", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                else
-                        if (flag == true)
-                {
-                    int num;
-                    do
-                    {
-                        num = card.Comp();
-                        pic_card[ind] = new PictureBox();
-                        pic_card[ind].Image = Image.FromFile("img\\" + num.ToString() + ".jpg");
-                        pic_card[ind].Top = pictureBox1.Top + 200;
-                        pic_card[ind].Left = pictureBox1.Left + sash;
-                        pic_card[ind].Height = 150;
-                        pic_card[ind].Width = 100;
-                        pic_card[ind].SizeMode = PictureBoxSizeMode.StretchImage;
-                        this.Controls.Add(pic_card[ind]);
-
-                        game.Comp(num);
-                        lbl_CScore.Text = "Comp  " + game._CompScore.ToString();
-                        sash += 105;
-                        ind++;
-                    } while (game.AI() == true);
-
-                    win = game.Winner();
-                    if (game._Money < 0)
-                    {
-                        MessageBox.Show("YOU LOSE", "M-Bjack", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        this.Close();
-                    }
-                    lbl_Money.Text = game._Money.ToString();
-
-                    if (win == 1)
-                        ans = MessageBox.Show("YOU WON\n NEW GAME ?", "M-Bjack", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                    else if (win == 2)
-                        ans = MessageBox.Show("TIE\n NEW GAME ?", "M-Bjack", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        MessageBox.Show("NEED BET", "M-Bjack", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     else
-                        ans = MessageBox.Show("YOU LOST\n NEW GAME ?", "M-Bjack", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (flag == true)
+                        {
+                            int num;
+                            do
+                            {
+                                num = card.Comp();
+                                pic_card[ind] = new PictureBox();
+                                pic_card[ind].Image = Image.FromFile("img\\" + num.ToString() + ".jpg");
+                                pic_card[ind].Top = pictureBox1.Top + 200;
+                                pic_card[ind].Left = pictureBox1.Left + sash;
+                                pic_card[ind].Height = 150;
+                                pic_card[ind].Width = 100;
+                                pic_card[ind].SizeMode = PictureBoxSizeMode.StretchImage;
+                                this.Controls.Add(pic_card[ind]);
 
-                }
+                                game.Comp(num);
+                                lbl_CScore.Text = "Comp  " + game._CompScore.ToString();
+                                sash += 105;
+                                ind++;
+                            } while (game.AI() == true);
+
+                            win = game.Winner();
+                            if (game._Money < 0)
+                            {
+                                MessageBox.Show("YOU LOSE", "M-Bjack", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                this.Close();
+                            }
+                            lbl_Money.Text = game._Money.ToString();
+
+                            if (win == 1)
+                                ans = MessageBox.Show("YOU WON\n NEW GAME ?", "M-Bjack", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                            else if (win == 2)
+                                ans = MessageBox.Show("TIE\n NEW GAME ?", "M-Bjack", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                            else
+                                ans = MessageBox.Show("YOU LOST\n NEW GAME ?", "M-Bjack", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                        }
                 if (ans == DialogResult.Yes)
                 {
                     ans = DialogResult.Cancel;
